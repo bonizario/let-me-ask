@@ -11,6 +11,12 @@ await seed(db, schema).refine((f) => {
       columns: {
         name: f.loremIpsum({ sentencesCount: 1 }),
         description: f.loremIpsum({ sentencesCount: 2 }),
+        createdAt: f.date({
+          maxDate: new Date(Date.now() - 1000 * 60 * 60 * 24), // 1 day ago
+        }),
+      },
+      with: {
+        questions: 5,
       },
     },
   }
