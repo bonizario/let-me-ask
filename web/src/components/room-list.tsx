@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { useRooms } from '@/http/use-rooms'
+import { useFetchRooms } from '@/http/use-fetch-rooms'
 import { dayjs } from '@/lib/dayjs'
 
 export function RoomList() {
-  const { data, isLoading } = useRooms()
+  const { data, isLoading } = useFetchRooms()
 
   return (
     <Card>
