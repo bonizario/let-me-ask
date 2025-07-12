@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { useFetchRooms } from '@/http/use-fetch-rooms'
+import { useGetRooms } from '@/http/use-get-rooms'
 import { dayjs } from '@/lib/dayjs'
 
 export function RoomList() {
-  const { data, isLoading } = useFetchRooms()
+  const { data, isLoading } = useGetRooms()
 
   return (
     <Card>
@@ -17,7 +17,7 @@ export function RoomList() {
       </CardHeader>
       <CardContent className="flex flex-1 flex-col gap-3">
         {isLoading && <Loader2 className="mx-auto size-6 animate-spin text-muted-foreground" />}
-        {data?.map((room) => (
+        {data?.map(room => (
           <Link
             className="flex items-center justify-between rounded-lg border p-3 hover:bg-accent/30"
             key={room.id}

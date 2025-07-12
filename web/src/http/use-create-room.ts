@@ -20,7 +20,7 @@ export function useCreateRoom() {
       return result
     },
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ['fetch-rooms'] })
+      await queryClient.invalidateQueries({ queryKey: ['get-rooms'] })
     },
   })
 }

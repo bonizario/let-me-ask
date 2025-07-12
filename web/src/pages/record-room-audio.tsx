@@ -19,6 +19,30 @@ export function RecordRoomAudio() {
 
   const [isRecording, setIsRecording] = useState(false)
   const recorder = useRef<MediaRecorder | null>(null)
+  const interval = useRef<NodeJS.Timeout | null>(null)
+
+  function createRecorder(audio: MediaStream) {
+    recorder.current = new MediaRecorder(audio, {
+      mimeType: 'audio/webm',
+      audioBitsPerSecond: 64_000,
+    })
+
+    recorder.current.ondataavailable = event => {
+      if (event.data.size > 0) {
+        uploadAudio(event.data)
+      }
+    }
+
+    recorder.current.onstart = () => {
+      console.log('Recording started')
+    }
+
+    recorder.current.onstop = () => {
+      console.log('Recording stopped')
+    }
+
+    recorder.current.start()
+  }
 
   async function startRecording() {
     if (!isRecordingSupported) {
@@ -37,42 +61,33 @@ export function RecordRoomAudio() {
         },
       })
 
-      recorder.current = new MediaRecorder(audio, {
-        mimeType: 'audio/webm',
-        audioBitsPerSecond: 64_000,
-      })
+      createRecorder(audio)
 
-      recorder.current.ondataavailable = event => {
-        if (event.data.size > 0) {
-          uploadAudio(event.data)
-        }
-      }
+      interval.current = setInterval(() => {
+        recorder.current?.stop()
 
-      recorder.current.onstart = () => {
-        console.log('Recording started')
-      }
-
-      recorder.current.onstop = () => {
-        console.log('Recording stopped')
-      }
-
-      recorder.current.start()
+        createRecorder(audio)
+      }, 5000)
     } catch {
       alert('An error occurred while trying to start the recording.')
-      setIsRecording(false)
     }
   }
 
   function stopRecording() {
+    setIsRecording(false)
+
     if (!isRecordingSupported) {
       alert(RECORDING_NOT_SUPPORTED_MESSAGE)
       return
     }
 
-    setIsRecording(false)
-
     if (recorder.current && recorder.current.state !== 'inactive') {
       recorder.current.stop()
+    }
+
+    if (interval.current) {
+      clearInterval(interval.current)
+      interval.current = null
     }
   }
 
