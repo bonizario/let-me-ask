@@ -10,5 +10,12 @@
       "indentStyle": "space",
       "lineWidth": 100
     }
+  },
+  "linter": {
+    "rules": {
+      "nursery": {
+        "noFloatingPromises": "warn"
+      }
+    }
   }
 }
