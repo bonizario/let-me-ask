@@ -11,7 +11,7 @@ export const createQuestionRoute: FastifyPluginCallbackZod = (app) => {
     {
       schema: {
         params: z.object({
-          roomId: z.uuid(),
+          roomId: z.string(),
         }),
         body: z.object({
           question: z.string().min(1),
