@@ -10,12 +10,12 @@ This was developed during the NLW Agents workshop, hosted by Rocketseat 💜.
 
 ### Main Features
 
-- **Live Audio Recording:** Users can record audio directly from their browser and upload it for processing.
-- **Automatic Transcription:** Uploaded audio is transcribed to text using the Google Gemini API.
-- **Semantic Search with Embeddings:** Transcriptions are converted into vector embeddings and stored in a PostgreSQL database with vector support.
-- **AI-Powered Q&A:** Users can ask questions about the recorded content. The system retrieves relevant audio chunks using vector similarity and generates answers using Gemini.
-- **Room-Based Organization:** Users can create rooms to organize different sessions or topics, each with its own set of audio and questions.
-- **Real-Time Frontend:** The React-based frontend provides a seamless experience for recording, uploading, and interacting with AI-generated answers.
+- **Record & Upload Audio:** Capture audio in the browser and upload it.
+- **Transcription:** Audio is transcribed using the Gemini API.
+- **Semantic Search:** Embeddings are generated from transcripts and stored in PostgreSQL for vector search.
+- **Ask Questions:** Get AI-generated answers based on your audio.
+- **Rooms:** Organize sessions by room.
+- **Modern Frontend:** Fast and interactive React UI.
 
 ## 🚀 Technologies
 
@@ -118,6 +118,10 @@ pnpm dev
 ```
 
 The frontend will be available at [http://localhost:5173](http://localhost:5173) and the API at [http://localhost:3333](http://localhost:3333).
+
+## 📝 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## 👋 Get in touch
 
