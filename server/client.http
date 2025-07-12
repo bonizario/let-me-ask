@@ -33,5 +33,5 @@ POST {{baseUrl}}/rooms/{{roomId}}/questions
 Content-Type: application/json
 
 {
-  "question": "What is the meaning of life?"
+  "question": "What is React.js?"
 }
